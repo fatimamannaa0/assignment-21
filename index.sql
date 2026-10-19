@@ -1,6 +1,6 @@
 CREATE DATABE university_db;
 
-CREATE TABLE depaartments(
+CREATE TABLE departments(
     dept_id INT PRIMARY KEY AUTO_INCREMENT,
     dept_name VARCHAR(50) NOT NULL
 );
@@ -9,7 +9,7 @@ CREATE TABLE courses (
      course_id  INT PRIMARY KEY AUTO_INCREMENT,
      course_name  VARCHAR(50) NOT NULL,
      credits  INT NOT NULL DEFAULT 3,
-     dept_id  INT (foreign key)
+     dept_id  INT,
      FOREIGN KEY (dept_id) REFERENCES departments(dept_id) ON DELETE CASCADE
 );
 
@@ -20,8 +20,8 @@ CREATE TABLE students (
 
 CREATE TABLE enrollments (
     enrollment_id INT PRIMARY KEY AUTO_INCREMENT,
-    student_id  INT (foreign key),
-    course_id  INT (foreign key),
+    student_id  INT,
+    course_id  INT,
     FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
     FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 );
@@ -29,11 +29,11 @@ CREATE TABLE enrollments (
 CREATE TABLE health_records (
     record_id INT PRIMARY KEY AUTO_INCREMENT,
     blood_group VARCHAR(10),
-    student_id  INT (foreign key),
+    student_id  INT,
     FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
 );
 
-INSERT INTO depaartments VALUES
+INSERT INTO departments VALUES
     (NULL, 'computer science'),
     (NULL, 'mathematics'),
     (NULL, 'physics');
